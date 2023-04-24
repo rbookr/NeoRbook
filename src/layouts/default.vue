@@ -3,7 +3,7 @@ import treeMenuWrapper from '../components/treeMenu/treeMenuWrapper.vue'
 import { bookMenu } from '../menu'
 
 const router = useRouter()
-const show_menu = ref(true)
+const show_menu = ref(false)
 function toggle_side_menu() {
   show_menu.value = !show_menu.value
 }

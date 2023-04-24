@@ -14,8 +14,10 @@ useHead({
   link: [
     {
       rel: 'icon',
-      type: 'image/svg+xml',
-      href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
+      // type: 'image/svg+xml',
+      // href: () => preferredDark.value ? '/favicon-dark.svg' : '/favicon.svg',
+      type: 'image/png',
+      href: () => '/favicon-32x32.png',
     },
   ],
 })
