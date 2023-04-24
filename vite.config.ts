@@ -14,6 +14,8 @@ import Inspector from 'vite-plugin-vue-inspector'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
 import Shiki from 'markdown-it-shiki'
+import TexMath from 'markdown-it-texmath'
+import Katex from 'katex'
 
 // @ts-expect-error failed to resolve types
 import VueMacros from 'unplugin-vue-macros/vite'
@@ -88,6 +90,13 @@ export default defineConfig({
             dark: 'vitesse-dark',
           },
         })
+
+        md.use(TexMath, {
+          engine: Katex,
+          delimiters: 'dollars',
+          katexOptions: { macros: { '\\RR': '\\mathbb{R}' } },
+        })
+
         md.use(LinkAttributes, {
           matcher: (link: string) => /^https?:\/\//.test(link),
           attrs: {
