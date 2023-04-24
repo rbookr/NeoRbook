@@ -37,8 +37,8 @@ export default defineConfig({
 
     // https://github.com/hannoeru/vite-plugin-pages
     Pages({
-        dirs:'src/books',
-        extensions: ['vue', 'md'],
+      dirs: 'src/books',
+      extensions: ['vue', 'md'],
     }),
 
     // https://github.com/JohnCampionJr/vite-plugin-vue-layouts
@@ -82,6 +82,7 @@ export default defineConfig({
       markdownItSetup(md) {
         // https://prismjs.com/
         md.use(Shiki, {
+          highlightLines: true,
           theme: {
             light: 'vitesse-light',
             dark: 'vitesse-dark',

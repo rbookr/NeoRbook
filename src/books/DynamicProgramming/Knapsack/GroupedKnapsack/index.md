@@ -4,6 +4,10 @@ author: rainboy
 update_time : 2023-04-22
 ---
 
+<script setup>
+import gallery from '~/bookComponents/gallery.vue'
+</script>
+
 # 分组背包
 
 ## 问题描述
@@ -80,7 +84,7 @@ for( int i =1;j<=N;i++){
 
 可以看到竟然有二次for K 循环,代码这显然不是很优雅
 
-```c
+```cpp {1-2}
 for( int i =1;j<=N;i++){
     for(int k = 1 ;k <= C;k++) { // 枚举容量
         f[i][k] = f[i-1][k];
@@ -95,6 +99,15 @@ for( int i =1;j<=N;i++){
     } //end for k
 } // end for i
 ```
+
+<gallery title="二维解法">
+<img src="./asym/figux_1.svg"/>
+<img src="./asym/figux_2.svg"/>
+<img src="./asym/figux_3.svg"/>
+<img src="./asym/figux_4.svg"/>
+<img src="./asym/figux_5.svg"/>
+</gallery>
+
 
 ## 一维解法
 
