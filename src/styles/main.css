@@ -1,3 +1,4 @@
+@import '../../markdownPlugin/markdown-it-code-copy.scss';
 @import './汇文明朝体_fontmin.css';
 @import './markdown.css';
 @import 'katex/dist/katex.css';

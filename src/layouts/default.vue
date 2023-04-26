@@ -1,6 +1,9 @@
 <script setup lang="ts">
+import clipboard from 'clipboard'
 import treeMenuWrapper from '../components/treeMenu/treeMenuWrapper.vue'
 import { bookMenu } from '../menu'
+
+const markdownBody = ref(null)
 
 const router = useRouter()
 const show_menu = ref(false)
@@ -13,6 +16,14 @@ function deal_menu_click(link: string) {
   console.log(link)
   router.push(link)
 }
+
+onMounted(() => {
+  new clipboard('.markdown-it-code-copy')
+    .on('success', (e) => {
+      e.trigger.classList.add('copied')
+      setTimeout(() => e.trigger.classList.remove('copied'), 1500)
+    })
+})
 </script>
 
 <template>
@@ -53,7 +64,7 @@ function deal_menu_click(link: string) {
           </a>
         </nav>
         <div class="mx-auto container">
-          <div class="row mx-auto lg:max-w-5xl md:max-w-4xl">
+          <div ref="markdownBody" class="row mx-auto lg:max-w-5xl md:max-w-4xl">
             <RouterView />
           </div>
         </div>
