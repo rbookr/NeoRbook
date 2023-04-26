@@ -13,15 +13,15 @@ export const bookMenu: MenuInter = {
   child: [
     {
       title: '动态规划',
-      src: 'DynamicProgramming',
+      src: 'dynamic_programming',
       child: [
         {
           title: '背包问题',
-          src: 'Knapsack',
+          src: 'knapsack',
           child: [
             {
               title: '分组背包',
-              src: 'GroupedKnapsack/',
+              src: 'grouped_knapsack/',
             },
           ],
         },
