@@ -12,20 +12,6 @@ export const bookMenu: MenuInter = {
   src: '',
   child: [
     {
-      title: 'cpp11',
-      src: 'cpp11',
-      child: [
-        {
-          title: 'regex',
-          src: 'regex/1.md',
-        },
-        {
-          title: 'refercence_wrappers',
-          src: 'refercence_wrappers/index.md',
-        },
-      ],
-    },
-    {
       title: '动态规划',
       src: 'DynamicProgramming',
       child: [
@@ -38,17 +24,6 @@ export const bookMenu: MenuInter = {
               src: 'GroupedKnapsack/',
             },
           ],
-        },
-      ],
-
-    },
-    {
-      title: '奇技淫巧',
-      src: '奇技淫巧',
-      child: [
-        {
-          title: '读写锁',
-          src: '读写锁/readme.md',
         },
       ],
 

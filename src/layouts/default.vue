@@ -32,18 +32,38 @@ function deal_menu_click(link: string) {
         class="left-80 transition-transform lg:ps-75"
         :class="{ 'translate-x-80': show_menu }"
       >
-        <button
-          class="block lg:hidden"
-          @click="toggle_side_menu()"
-        >
-          <div i="carbon-menu" />
-        </button>
-        <RouterView />
+        <nav id="button-logos" flex="~ gap-4" class="ms-10">
+          <button
+            class="block lg:hidden"
+            @click="toggle_side_menu()"
+          >
+            <div i="carbon-menu" />
+          </button>
+
+          <RouterLink icon-btn to="/" title="主页">
+            <div i-carbon-home />
+          </RouterLink>
+
+          <button icon-btn title="切换主题" @click="toggleDark()">
+            <div i="carbon-sun dark:carbon-moon" />
+          </button>
+
+          <a icon-btn rel="noreferrer" href="https://github.com/rbookr/NeoRbook" target="_blank" title="GitHub">
+            <div i-carbon-logo-github />
+          </a>
+        </nav>
+        <div class="mx-auto container">
+          <div class="row mx-auto lg:max-w-5xl md:max-w-4xl">
+            <RouterView />
+          </div>
+        </div>
+
+        <hr class="mx-auto mt-10 block w-4/5 text-center" border="t solid gray-500/[.55] ">
+        <TheFooter />
+        <div mx-auto mt-5 text-center text-sm opacity-50>
+          [Default Layout]
+        </div>
       </div>
-    </div>
-    <TheFooter />
-    <div mx-auto mt-5 text-center text-sm opacity-50>
-      [Default Layout]
     </div>
   </main>
 </template>
