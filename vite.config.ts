@@ -21,7 +21,10 @@ import Katex from 'katex'
 import VueMacros from 'unplugin-vue-macros/vite'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 
+// markdown plugins
+
 import myFenceRule from './markdownPlugin/fence'
+import useEjs from './markdownPlugin/ejs'
 
 export default defineConfig({
   resolve: {
@@ -84,6 +87,7 @@ export default defineConfig({
       wrapperClasses: 'prose prose-sm m-auto text-left',
       headEnabled: true,
       markdownItSetup(md) {
+        md.use(useEjs)
         md.use(myFenceRule, { iconClass: 'i-carbon-sun' })
         // https://prismjs.com/
         md.use(Shiki, {

@@ -1,0 +1,26 @@
+//完善 markdown中的样式
+
+
+// >>> fence code_block,空行不显示的问题
+code[v-pre] {
+    > span {
+        line-height: 20px;
+        height: 20px;
+    }
+    
+    //最后一行空行不显示
+    span.line:last-child:has(span:first-child:empty){
+        height: 0px;
+    }
+
+    span.line:last-child:empty {
+        height: 0px;
+    }
+
+    //没有向前的兄弟选择器
+    //删除倒数第二行的空行
+    span.line:empty:has(span.line:last-child:empty) {
+        height: 0px;
+    }
+
+}
