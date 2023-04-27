@@ -19,13 +19,27 @@ export default {
     <div>
       <div class="vertical-write mx-auto my-10 text-xl" flex="~ col items-start gap-2">
         <p class="h-full border border-gray-500/[.3] rounded px-1 py-2 text-left dark:border-gray-200/[.3]">
-          為學者日益 聞道者日損
-        </p>
-        <p class="h-full border border-gray-500/[.3] rounded px-1 py-2 text-left dark:border-gray-200/[.3]">
-          損之又損 以至於無為 無為而無不為
+          企者不立，跨者不行
         </p>
         <p class="h-full px-1 py-2 text-right text-sm">
-          老子帛書  四十八
+          王本老子 二十二
+        </p>
+
+        <p class="h-full border border-gray-500/[.3] rounded px-1 py-2 text-left dark:border-gray-200/[.3]">
+          為學者日益 聞道者日損 損之又損
+        </p>
+        <p class="h-full border border-gray-500/[.3] rounded px-1 py-2 text-left dark:border-gray-200/[.3]">
+          以至於無為 無為而無不為
+        </p>
+        <p class="h-full px-1 py-2 text-right text-sm">
+          帛書老子  四十八
+        </p>
+
+        <p class="h-full border border-gray-500/[.3] rounded px-1 py-2 text-left dark:border-gray-200/[.3]">
+          九尺之臺起於蔂土，百仞之高始於足下
+        </p>
+        <p class="h-full px-1 py-2 text-right text-sm">
+          帛書老子 六十四
         </p>
       </div>
     </div>

@@ -45,6 +45,14 @@ $totol(i-1)$ 表示第i组物品的数量
 $v[i][j]$表示第i组第j个物品的价值
 $w[i][j]$表示第i组第j个物品的重量
 
+<gallery title="三维解法">
+<img src="./asym/figux_1.svg"/>
+<img src="./asym/figux_2.svg"/>
+<img src="./asym/figux_3.svg"/>
+<img src="./asym/figux_4.svg"/>
+<img src="./asym/figux_5.svg"/>
+</gallery>
+
 ## 二维解法
 
 第i组内,前j个物品,总和前j-1有关,类比01背包,前i个物品总和前i-1个有关,
@@ -101,13 +109,6 @@ for( int i =1;j<=N;i++){
 } // end for i
 ```
 
-<gallery title="二维解法">
-<img src="./asym/figux_1.svg"/>
-<img src="./asym/figux_2.svg"/>
-<img src="./asym/figux_3.svg"/>
-<img src="./asym/figux_4.svg"/>
-<img src="./asym/figux_5.svg"/>
-</gallery>
 
 
 ## 一维解法
@@ -139,11 +140,26 @@ figure_4.svg 轮播图
 
 虽然代码看起来很长,但是它的核心只有三行:
 
+```pseudocode
+\begin{algorithm}
+\begin{algorithmic}
+    \FOR {$i : 1 \rightarrow \ groupCount $}
+    \FOR {Capacity $: Max \rightarrow 0$}
+        \FOR {each item in group[i]}
+            \STATE Update max value for the current capacity
+        \ENDFOR
+    \ENDFOR
+    \ENDFOR
+\end{algorithmic}
+\end{algorithm}
+```
+
 ```
 枚举组i
     倒序枚举容量C
-        处理一组物品
+        处理第i组内的每个物品在当前容量下的最值
 ```
+
 这三行代码与`01背包`的是一样
 
 ```cpp {34-36}

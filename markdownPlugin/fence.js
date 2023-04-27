@@ -2,6 +2,22 @@
 * fence 渲染的hook
 */
 
+import pseudocode from 'pseudocode'
+import { escapeHtml } from 'markdown-it/lib/common/utils'
+
+const pseudocodeRender = function (code, options = { throwOnError: true }) {
+  try {
+    return `<p>${pseudocode.renderToString(code, options)}</p>`
+  }
+  catch (error) {
+    if (options.throwOnError) {
+      console.error(error)
+      return `<pre>pseudocode.js error :${escapeHtml(`${error}`)}</pre>`
+    }
+    return `<pre>${escapeHtml(code)}</pre>`
+  }
+}
+
 const defCodeCopyOptions = {
   iconStyle: 'font-size: 21px; opacity: 0.4;',
   iconClass: 'mdi mdi-content-copy',
@@ -32,6 +48,8 @@ export default (md, options = {}) => {
       case 'ditaa':
         // return plantumlParser.functions.getMarkup(code, 'ditaa')
         return `<pre class="ditaa">${code}</pre>`
+      case 'pseudocode':
+        return pseudocodeRender(code)
     }
 
     const origRendered = defaultRenderer(tokens, idx, options, env, slf)

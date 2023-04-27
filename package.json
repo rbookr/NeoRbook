@@ -20,6 +20,7 @@
     "@vueuse/head": "^1.1.26",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.34",
+    "pseudocode": "^2.2.0",
     "vue": "^3.2.47",
     "vue-demi": "^0.14.0",
     "vue-i18n": "^9.2.2",
