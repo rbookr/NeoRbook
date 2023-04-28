@@ -13,8 +13,9 @@ body,
   padding: 0;
 }
 
-html.dark {
-  background: var(--dark-backgroud);
+html.dark body,
+html.dark #app {
+  background-color: var(--dark-background);
   color-scheme: dark;
 }
 

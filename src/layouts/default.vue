@@ -2,6 +2,7 @@
 import clipboard from 'clipboard'
 import treeMenuWrapper from '../components/treeMenu/treeMenuWrapper.vue'
 import { bookMenu } from '../menu'
+import nav_buttons from '../components/nav_buttons.vue'
 
 const markdownBody = ref(null)
 
@@ -43,6 +44,7 @@ onMounted(() => {
         class="left-80 transition-transform lg:ps-75"
         :class="{ 'translate-x-80': show_menu }"
       >
+        <nav_buttons />
         <nav id="button-logos" flex="~ gap-4" class="ms-10">
           <button
             class="block lg:hidden"
@@ -50,21 +52,10 @@ onMounted(() => {
           >
             <div i="carbon-menu" />
           </button>
-
-          <RouterLink icon-btn to="/" title="主页">
-            <div i-carbon-home />
-          </RouterLink>
-
-          <button icon-btn title="切换主题" @click="toggleDark()">
-            <div i="carbon-sun dark:carbon-moon" />
-          </button>
-
-          <a icon-btn rel="noreferrer" href="https://github.com/rbookr/NeoRbook" target="_blank" title="GitHub">
-            <div i-carbon-logo-github />
-          </a>
         </nav>
+
         <div class="mx-auto container">
-          <div ref="markdownBody" class="row mx-auto lg:max-w-5xl md:max-w-4xl">
+          <div id="write" ref="markdownBody" class="row mx-auto lg:max-w-5xl md:max-w-4xl">
             <RouterView />
           </div>
         </div>

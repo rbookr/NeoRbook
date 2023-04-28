@@ -26,7 +26,16 @@ export const bookMenu: MenuInter = {
           ],
         },
       ],
-
+    },
+    {
+      title: '附录',
+      src: 'appendix',
+      child: [
+        {
+          title: 'vscode',
+          src: 'vscode/',
+        },
+      ],
     },
   ],
 }

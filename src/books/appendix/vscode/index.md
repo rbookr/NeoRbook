@@ -1,5 +1,22 @@
+---
+title : vscode的使用 
+author: rainboy
+update_time : 2023-04-27
+---
 
-怎么自动对齐
+# vscode的使用
+
+怎么自动格式化
+
+1. 首先在vscode中安装扩展C/C++，扩展程序将自动安装clang-format。
+2. 打开首选项设置（ctrl + ,），搜索format ，勾选format on save 自动保存。
+3. 打开首选项设置（ctrl + ,），搜索format ，勾选format on Type 。
+
+怎么自动保存
+
+1. 打开首选项设置（ctrl + ,），搜索`auto save` ，选`afterDelay`。
+
+
 
 ## 运行
 

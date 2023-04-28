@@ -10,18 +10,18 @@
 }
 .md-toc-inner {
   margin-left: 0 !important;
-  @if $theme == "light" {
+  // @if $theme == "light" {
     color: var(--text-color) !important;
-  } @else if $theme == "dark" {
-    color: #dddddd !important;
-  }
+  // } @else if $theme == "dark" {
+  //   color: #dddddd !important;
+  // }
 }
 .md-toc-item {
-  @if $theme == "light" {
+  // @if $theme == "light" {
     color: var(--text-color) !important;
-  } @else if $theme == "dark" {
-    color: #dddddd !important;
-  }
+  // } @else if $theme == "dark" {
+  //   color: #dddddd !important;
+  // }
 }
 
 /* 目录标题内容属性 */

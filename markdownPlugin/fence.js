@@ -5,7 +5,23 @@
 import pseudocode from 'pseudocode'
 import { escapeHtml } from 'markdown-it/lib/common/utils'
 
-const pseudocodeRender = function (code, options = { throwOnError: true }) {
+// 计算子串出现的次数
+function countSubstring(str, subStr) {
+  const regExp = new RegExp(subStr, 'g')
+  const matchArray = str.match(regExp)
+  return matchArray ? matchArray.length : 0
+}
+
+// 得到的lineNumber html代码
+function getLineNumberCode(str) {
+  const count = countSubstring(str, '<span class="line">')
+  str = ''
+  for (let i = 0; i < count / 2 - 1; i++)
+    str += `<span>${i + 1}</span>`
+  return str
+}
+
+const pseudocodeRender = function (code, options = { throwOnError: true, lineNumber: true, indentSize: '2.2em' }) {
   try {
     return `<p>${pseudocode.renderToString(code, options)}</p>`
   }
@@ -62,8 +78,9 @@ export default (md, options = {}) => {
       return origRendered
 
     // const myOpt = { ...defCodeCopyOptions, ...options }
+    // console.log(origRendered)
     return `
-      <div style="position: relative">
+      <div style="position: relative" class="code-with-linenumber">
             ${origRendered}
           <button class="markdown-it-code-copy ${myOpt.buttonClass}" data-clipboard-text="${content}" style="${myOpt.buttonStyle}" title="Copy">
               <span style="${myOpt.iconStyle}" class="${myOpt.iconClass}"></span>

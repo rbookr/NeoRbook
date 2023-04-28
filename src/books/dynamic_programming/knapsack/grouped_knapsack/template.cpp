@@ -3,7 +3,7 @@
 // date: 2023/4/26
 
 #define FOR(i,a,b) for(int i = a ; i<= b; ++i)
-#define ROF(i,a,b) for(int i = a ; i>= b; --i)
+#define rFOR(i,a,b) for(int i = a ; i>= b; --i)
 
 
 // cap 背包的容量
@@ -31,7 +31,7 @@ struct groupKnapsack {
 
    //处理一组物品
    void deal_one_group_stuff() {
-        ROF(C,Cap,0) // 容量 大->小
+        rFOR(C,Cap,0) // 容量 大->小
             FOR(i,1,stuff_size) //枚举物品 
                 deal_one_stuff(stuffs[i].v,stuffs[i].w,C);
    }

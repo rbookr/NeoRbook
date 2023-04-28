@@ -1,6 +1,8 @@
 :root {
-  --dark-background:#121212;
+  --dark-background: #121212;
  
   --default-fence-text-light-color: black;
   --default-fence-text-dark-color: #dbd7caee;
+
+  --text-dark-color:#dbd7caee;
 }

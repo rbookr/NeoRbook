@@ -13,6 +13,9 @@ import Inspect from 'vite-plugin-inspect'
 import Inspector from 'vite-plugin-vue-inspector'
 import LinkAttributes from 'markdown-it-link-attributes'
 import Unocss from 'unocss/vite'
+
+// import ViteYaml from '@modyfi/vite-plugin-yaml'
+
 import Shiki from 'markdown-it-shiki'
 import TexMath from 'markdown-it-texmath'
 import Katex from 'katex'
@@ -34,6 +37,7 @@ export default defineConfig({
   },
 
   plugins: [
+
     VueMacros({
       plugins: {
         vue: Vue({
@@ -162,6 +166,9 @@ export default defineConfig({
 
     // https://github.com/feat-agency/vite-plugin-webfont-dl
     WebfontDownload(),
+
+    // https://github.com/Modyfi/vite-plugin-yaml
+    // ViteYaml(),
   ],
 
   // https://github.com/vitest-dev/vitest

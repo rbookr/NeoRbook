@@ -1,35 +1,31 @@
+@import "./font.scss";
+
 :root {
-  @if $os == "windows" {
-    $ui-font: "\"阿里巴巴普惠体 2.0\"", "\"微软雅黑\"" !global;
-    $heading-Chinese-font: "华文黑体" !global;
-    $chapter-Chinese-font: "华文黑体" !global;
-    $sub-chapter-Chinese-font: "华文楷体" !global;
-    $sub-sub-chapter-Chinese-font: "华文仿宋" !global;
-  } @else if $os == "macos" {
-    $ui-font: "\"苹方-简\"" !global;
-    $heading-Chinese-font: "华文黑体Bold" !global;
-    $chapter-Chinese-font: "方正公文黑体" !global;
-    $sub-chapter-Chinese-font: "方正公文楷体" !global;
-    $sub-sub-chapter-Chinese-font: "方正公文仿宋" !global;
-  } @else if $os == "linux" {
-    $ui-font: "\"Noto Sans CJK SC\"" !global;
-    $heading-Chinese-font: "Noto Sans CJK SC" !global;
-    $chapter-Chinese-font: "Noto Sans CJK SC" !global;
-    $sub-chapter-Chinese-font: "Noto Serif CJK SC" !global;
-    $sub-sub-chapter-Chinese-font: "Noto Serif CJK SC" !global;
-  }
+
+    // $ui-font: "\"苹方-简\"" !global;
+    // $heading-Chinese-font: "华文黑体Bold" !global;
+    // $chapter-Chinese-font: "方正公文黑体" !global;
+    // $sub-chapter-Chinese-font: "方正公文楷体" !global;
+    // $sub-sub-chapter-Chinese-font: "方正公文仿宋" !global;
+    $ui-font: $__font_hei;
+    $heading-Chinese-font: $__font_hei;
+    $chapter-Chinese-font: $__font_hei;
+    $sub-chapter-Chinese-font: $__font_hei;
+    $sub-sub-chapter-Chinese-font: $__font_hei;
 
   /* == 字体设置 == */
 
   /* 基准字体 */
   /* 备选：Times, "Times New Roman" */
   --base-Latin-font: "Latin Modern Roman", "Latin Modern Roman 10", Times;
-  --base-Chinese-font: "家族宋", "宋体-简", "华文宋体", "Noto Serif CJK SC";
-  --base-font-size: 9.5pt;
+  // --base-Chinese-font: "家族宋", "宋体-简", "华文宋体", "Noto Serif CJK SC";
+  --base-Chinese-font: $__font_hei;
+  --base-font-size: 16px;
 
   /* 引言字体 */
   --quote-font: "Latin Modern Roman", "Latin Modern Roman 10", Times,
-    "Times New Roman", "华文仿宋";
+    "Times New Roman",#{$__font_hei};
+
   /* em单位为一个正文字符（--base-font-size）大小，
   例如，如果您设置 --base-font-size 为 9.5pt，那么 1.05em = 1.05*9.5pt ≈ 10pt。下面的标题字体等设置也遵循该规则。
   这样，您就可以仅通过调整基准字体大小，而动态对其他元素大小做出调整。
@@ -40,6 +36,7 @@
   /* "Courier New" 从 Windows 3.1 起成为 Windows 官方提供的字体 */
   /* "Consolas" 从 Windows Vista 起成为 Windows 官方提供的字体 */
   --code-font: "Latin Modern Mono", "Latin Modern Mono 10", "Consolas", "Courier New";
+  // ? --code-font 应该使用原来的 unocss的字体
 
   /* 侧边栏字体 */
   --ui-font: #{$ui-font};
@@ -64,17 +61,8 @@
   --table-font: "";
 
   /* 标题字体（总设置） */
-  @if $os == "macos" {
-    /* 注意，如果您使用macOS系统并更改了英文字体，请在此处更换标题英文字体粗体字重的postscript值 */
-    --heading-Latin-font: "LMRoman10-Bold";
-    --heading-Chinese-font: "#{$heading-Chinese-font}";
-  } @else if $os == "windows" {
     --heading-Latin-font: var(--base-Latin-font);
     --heading-Chinese-font: "#{$heading-Chinese-font}";
-  } @else if $os == "linux" {
-    --heading-Latin-font: var(--base-Latin-font);
-    --heading-Chinese-font: "#{$heading-Chinese-font}";
-  }
 
   /* 标题字体分别设置 */
   /* 大标题（h1）字体 */
@@ -116,23 +104,23 @@
   --link-color-light: #2E67D3;
   --link-color-dark: #8bb1f9;
 
-  @if $theme == "dark" {
-    --md-char-color: hsl(212, 100%, 85%);
-    --link-hover: hsl(212, 100%, 85%);
-    --focus-cont-bg: hsl(0, 0%, 10%);
-    --focus-para-bg: hsl(0, 0%, 15%);
-    --opt-borderb: 1px dashed hsl(212, 100%, 65%);
-    --focus-shadow: 0px 8px 16px 0 rgba(0, 0, 0, 0.9);
-    --opt-shadow: 0px 8px 16px 1px hsla(0, 0%, 0%, 0.3);
+  // @if $theme == "dark" {
+  //   --md-char-color: hsl(212, 100%, 85%);
+  //   --link-hover: hsl(212, 100%, 85%);
+  //   --focus-cont-bg: hsl(0, 0%, 10%);
+  //   --focus-para-bg: hsl(0, 0%, 15%);
+  //   --opt-borderb: 1px dashed hsl(212, 100%, 65%);
+  //   --focus-shadow: 0px 8px 16px 0 rgba(0, 0, 0, 0.9);
+  //   --opt-shadow: 0px 8px 16px 1px hsla(0, 0%, 0%, 0.3);
 
-    /*change background of sidebar*/
-    --side-bar-bg-color: #282828;
-    --window-border: 0px solid #929292;
-    --title-color: #dddddd;
-    --text-color: #dcdcdc;
-    --select-text-bg-color: #9ab1cf;
-    --select-text-font-color: #161616;
-    --bg-color: #1e1e1e;
-    --mermaid-theme: night;
-  }
+  //   /*change background of sidebar*/
+  //   --side-bar-bg-color: #282828;
+  //   --window-border: 0px solid #929292;
+  //   --title-color: #dddddd;
+  //   --text-color: #dcdcdc;
+  //   --select-text-bg-color: #9ab1cf;
+  //   --select-text-font-color: #161616;
+  //   --bg-color: #1e1e1e;
+  //   --mermaid-theme: night;
+  // }
 }
