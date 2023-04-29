@@ -100,7 +100,7 @@ export default defineConfig({
         md.use(postRender)
 
         md.use(MdItAnchor)
-        md.use(MdItToc)
+        md.use(MdItToc, { level: 2 })
 
         // https://prismjs.com/
         md.use(Shiki, {
