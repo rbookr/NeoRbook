@@ -15,15 +15,6 @@ import './styles/layout.scss'
 
 const routes = setupLayouts(generatedRoutes)
 
-// 复制用
-// @ts-expect-error
-// window.clipboard = (ele) => {
-//   new Clipboard(ele)
-//     .on('success', (e) => {
-//       e.trigger.classList.add('copied')
-//       setTimeout(() => e.trigger.classList.remove('copied'), 1500)
-//     })
-// }
 
 // https://github.com/antfu/vite-ssg
 export const createApp = ViteSSG(

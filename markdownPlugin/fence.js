@@ -82,7 +82,7 @@ export default (md, options = {}) => {
     return `
       <div style="position: relative" class="code-with-linenumber">
             ${origRendered}
-          <button class="markdown-it-code-copy ${myOpt.buttonClass}" data-clipboard-text="${content}" style="${myOpt.buttonStyle}" onclick="window.clipboard(this)" title="Copy">
+          <button class="markdown-it-code-copy ${myOpt.buttonClass}" data-clipboard-text="${content}" style="${myOpt.buttonStyle}" onclick="window.myclipboard(this)" title="Copy">
               <span style="${myOpt.iconStyle}" class="${myOpt.iconClass}"></span>
           </button>
       </div>

@@ -10,6 +10,10 @@ function toggle_side_menu() {
   show_menu.value = !show_menu.value
 }
 
+function myclipcopy() {
+  console.log('sdf')
+}
+
 function deal_menu_click(link: string) {
   link = link.replace(/\.md$/, '')
   console.log(link)

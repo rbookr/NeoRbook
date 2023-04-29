@@ -16,15 +16,23 @@
       if (setting === 'dark' || (prefersDark && setting !== 'light'))
         document.documentElement.classList.toggle('dark', true)
     })()
-    window.clipboard = (ele) => {
-      const text = ele.getAttribute('data-clipboard-text')
-      navigator.clipboard.writeText(text).then(() => {
-        // console.log('Text copied to clipboard.')
+  </script>
+  <script>
+    window.myclipboard = (ele) => {
+      const copy_text = ele.getAttribute('data-clipboard-text')
+      const el = document.createElement('button')
+      document.body.appendChild(el)
+      const clipboard = new ClipboardJS(el, { text: () => copy_text })
+      clipboard.on('success', (event) => {
+        // event.clearSelection()
         ele.classList.add('copied')
         setTimeout(() => ele.classList.remove('copied'), 1500)
-      }).catch((error) => {
-        console.error('Failed to copy text: ', error)
       })
+      clipboard.on('error', (event) => {
+        console.error(event)
+      })
+      el.click()
+      document.body.removeChild(el)
 }
   </script>
 </head>
@@ -32,5 +40,6 @@
   <div id="app"></div>
   <script type="module" src="/src/main.ts"></script>
   <noscript>This website requires JavaScript to function properly. Please enable JavaScript to continue.</noscript>
+  <script src="/js/clipboard.min.js"></script>
 </body>
 </html>
