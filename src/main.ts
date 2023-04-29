@@ -2,7 +2,7 @@ import { ViteSSG } from 'vite-ssg'
 import { setupLayouts } from 'virtual:generated-layouts'
 
 // import Previewer from 'virtual:vue-component-preview'
-import Clipboard from 'clipboard'
+// import Clipboard from 'clipboard'
 import App from './App.vue'
 import type { UserModule } from './types'
 import generatedRoutes from '~pages'
@@ -16,13 +16,14 @@ import './styles/layout.scss'
 const routes = setupLayouts(generatedRoutes)
 
 // 复制用
-window.clipboard = (ele) => {
-  new Clipboard(ele)
-    .on('success', (e) => {
-      e.trigger.classList.add('copied')
-      setTimeout(() => e.trigger.classList.remove('copied'), 1500)
-    })
-}
+// @ts-expect-error
+// window.clipboard = (ele) => {
+//   new Clipboard(ele)
+//     .on('success', (e) => {
+//       e.trigger.classList.add('copied')
+//       setTimeout(() => e.trigger.classList.remove('copied'), 1500)
+//     })
+// }
 
 // https://github.com/antfu/vite-ssg
 export const createApp = ViteSSG(
