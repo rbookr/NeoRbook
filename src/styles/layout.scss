@@ -1,0 +1,100 @@
+//页面布局
+$screen-width : 1376px; //定义了显示内容的宽度
+$aside-width : 270px; // 两侧栏的宽度
+
+.containerBox {
+    // background-color: rgba($color: red, $alpha: 0.3);
+    padding: 0;
+    margin: 0;
+    width: 100%;
+
+    .sideMenu {
+        // background-color: rgba($color: blue, $alpha: 0.5);
+        // background-color: black;
+        width: calc( (100% - $screen-width)/2 + $aside-width );
+        padding: 32px 5px 0 calc( ( 100% - $screen-width)/2);
+        position: fixed;
+        height: 100vh;
+        top: 0;
+        left: 0;
+    }
+    .main {
+
+        margin: 0 0 0 calc( (100% - $screen-width)/2 + $aside-width);
+        // background-color: red;
+        // width: 1000px;
+        // width: calc(100vw -  (100vw - $screen-width)/2 - $aside-width);
+        .markdown-body {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: row-reverse;
+            justify-content: start;
+            > div.table-of-contents 
+            {
+                // background-color: red;
+                width: $aside-width;
+                padding-top: 2.5rem;
+                > nav.table-of-contents {
+                // background-color: blue;
+                    position: sticky;
+                    top:1.5rem;
+                }
+                // background-color: blue;
+            }
+
+            .markdown-content {
+                max-width: 668px;
+                margin:0 96px;
+                nav.table-of-contents {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 1536px) {
+
+}
+
+@media (max-width: 1280px) {
+
+    .containerBox .sideMenu {
+        width: $aside-width !important;
+    }
+
+    div.table-of-contents 
+    {
+        display: none;
+    }
+
+    .containerBox {
+        .main {
+            margin-left: $aside-width ;
+            background-color: red;
+            .markdown-body {
+                .markdown-content {
+                    margin: 0 auto;
+                }
+            }
+        }
+    }
+
+}
+
+@media (max-width: 1024px) {
+    .containerBox {
+        .main {
+            margin: 0 auto;
+            background-color: red;
+        }
+
+        div.table-of-contents {
+            display: none;
+        }
+
+        .sideMenu {
+            display: none;
+        }
+    }
+}

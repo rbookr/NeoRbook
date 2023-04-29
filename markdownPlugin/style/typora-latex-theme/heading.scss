@@ -1,4 +1,4 @@
-#write {
+.markdown-body {
   // 标题属性
   h1,
   h2,
@@ -19,6 +19,8 @@
   h2 {
     font-family: var(--heading-Latin-font), $__font_fang_song, serif;
     font-size: var(--h2-font-size);
+    margin-top: 2.0rem;
+    margin-bottom: 1rem;
   }
   h3 {
     font-family: var(--heading-Latin-font),$__font_fang_song, var(--h3-Chinese-font), serif;

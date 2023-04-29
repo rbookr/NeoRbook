@@ -10,6 +10,7 @@ import 'uno.css'
 import '@unocss/reset/tailwind.css'
 import './styles/main.css'
 import './styles/markdown_perfect.scss'
+import './styles/layout.scss'
 
 const routes = setupLayouts(generatedRoutes)
 

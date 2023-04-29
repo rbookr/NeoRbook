@@ -1,5 +1,5 @@
 @media print {
-  #write {
+  .markdown-body {
     padding: 0 !important;
   }
   @page {
@@ -7,7 +7,7 @@
   }
 }
 
-#write {
+.markdown-body {
   font-family: var(--base-Latin-font), var(--base-Chinese-font), serif;
   font-size: var(--base-font-size);
   /* A4标准宽度 */

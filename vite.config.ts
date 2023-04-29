@@ -26,8 +26,11 @@ import WebfontDownload from 'vite-plugin-webfont-dl'
 
 // markdown plugins
 
+import MdItAnchor from 'markdown-it-anchor'
+import MdItToc from 'markdown-it-toc-done-right'
 import myFenceRule from './markdownPlugin/fence'
 import useEjs from './markdownPlugin/ejs'
+import postRender from './markdownPlugin/postRender'
 
 export default defineConfig({
   resolve: {
@@ -88,11 +91,17 @@ export default defineConfig({
     // https://github.com/antfu/vite-plugin-vue-markdown
     // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
     Markdown({
-      wrapperClasses: 'prose prose-sm m-auto text-left',
+      wrapperClasses: 'markdown-body',
       headEnabled: true,
       markdownItSetup(md) {
         md.use(useEjs)
         md.use(myFenceRule, { iconClass: 'i-carbon-sun' })
+
+        md.use(postRender)
+
+        md.use(MdItAnchor)
+        md.use(MdItToc)
+
         // https://prismjs.com/
         md.use(Shiki, {
           highlightLines: true,

@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  <nav id="button-logos" flex="~ col gap-4" class="fixed bottom-5 right-5 ms-10">
+  <nav id="button-logos" flex="~ col gap-4" class="fixed bottom-5 right-5 ms-10" text="dark:white">
     <RouterLink icon-btn to="/" title="主页">
       <div i-carbon-home />
     </RouterLink>

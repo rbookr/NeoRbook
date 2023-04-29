@@ -8,6 +8,8 @@ update_time : 2023-04-22
 import gallery from '~/bookComponents/gallery.vue'
 </script>
 
+[[toc]]
+
 # 分组背包
 
 ## 问题描述
