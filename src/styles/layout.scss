@@ -45,6 +45,8 @@ $aside-width : 270px; // 两侧栏的宽度
             .markdown-content {
                 max-width: 668px;
                 margin:0 96px;
+                flex-grow: 1;
+                flex-shrink: 0;
                 nav.table-of-contents {
                     display: none;
                 }

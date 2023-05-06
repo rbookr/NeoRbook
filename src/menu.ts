@@ -12,6 +12,16 @@ export const bookMenu: MenuInter = {
   src: '',
   child: [
     {
+      title: '排序算法',
+      src: 'sort',
+      child: [
+        {
+          title: '快速排序',
+          src: 'quicksort/',
+        },
+      ],
+    },
+    {
       title: '动态规划',
       src: 'dynamic_programming',
       child: [
