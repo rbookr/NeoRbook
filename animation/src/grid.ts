@@ -4,6 +4,7 @@ import _ from 'lodash'
 import type { shapeClass } from './shape'
 import { circleClass, rectClass } from './shape'
 import { textClass } from './text'
+import type { dumpsType } from './base'
 
 export interface gridConf {
   rows: number
@@ -79,7 +80,7 @@ export class grid {
   }
 
   get_ij_pos(i: number, j: number) {
-    return [this.x + j * (this.cell_h + this.row_gap), this.y + i * (this.cell_w + this.col_gap)]
+    return [this.x + j * (this.cell_w + this.col_gap), this.y + i * (this.cell_h + this.row_gap)]
   }
 
   // 创建
@@ -92,5 +93,19 @@ export class grid {
   // 遍历每个元素 ,设置值
   each(func: (any) => void) {
     _.each(this.shapes, func)
+  }
+
+  // 导出数据, 只是内部的每个数据的导出
+  dumps(): dumpsType[] {
+    return _.map(this.shapes, (shape) => {
+      return shape.dumps()
+    })
+  }
+
+  // 播放数据 ,只是内部的每个数据的播放
+  play(data: dumpsType[]) {
+    if (this.shapes.length)
+      var dom = textClass
+    _.each(data, d => dom.play(d))
   }
 }

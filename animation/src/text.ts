@@ -1,3 +1,5 @@
+import * as d3 from 'd3'
+import _ from 'lodash'
 import type { dumpsType } from './types'
 import { BaseClass } from './base'
 import { shapeClass } from './shape'
@@ -41,12 +43,15 @@ export class textClass extends shapeClass {
   }
 
   static play(dumps: dumpsType) {
-    const dom = svg.select(dumps.identity).transition()
+    const dom = d3.select(dumps.identity).transition()
       .ease(BaseClass.get_ease(dumps.ease))
       .duration(dumps.duration)
+    console.log(dumps.identity)
 
-    // if (dumps.text)
-    // dom.attr('text', dumps.text) //先要设定 dumps里含有text
+    if (dumps.text)
+      dom.text(dumps.text) // 先要设定 dumps里含有text
+
+    console.log(dumps.text)
 
     // 设定attr
     _.reduce(dumps.attrs, (rect, [name, attr]) => {

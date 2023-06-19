@@ -25,6 +25,10 @@ server {
 }
 ```
 
+## markdown 插件
+
+- [Antonio-Laguna/markdown-it-image-figures](https://github.com/Antonio-Laguna/markdown-it-image-figures)
+
 ## 感谢
 
 - [antfu/Vitesse](https://github.com/antfu/vitesse)

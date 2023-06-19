@@ -12,6 +12,7 @@ import VueI18n from '@intlify/unplugin-vue-i18n/vite'
 import Inspect from 'vite-plugin-inspect'
 import Inspector from 'vite-plugin-vue-inspector'
 import LinkAttributes from 'markdown-it-link-attributes'
+import implicitFigures from 'markdown-it-image-figures'
 import Unocss from 'unocss/vite'
 
 // import ViteYaml from '@modyfi/vite-plugin-yaml'
@@ -25,6 +26,10 @@ import VueMacros from 'unplugin-vue-macros/vite'
 import WebfontDownload from 'vite-plugin-webfont-dl'
 
 // markdown plugins
+
+import MdContainer from 'markdown-it-container'
+import MdContainerClass from './markdownPlugin/container/class'
+
 
 import MdItAnchor from 'markdown-it-anchor'
 import MdItToc from 'markdown-it-toc-done-right'
@@ -96,6 +101,8 @@ export default defineConfig({
       markdownItSetup(md) {
         md.use(useEjs)
         md.use(myFenceRule, { iconClass: 'i-carbon-sun' })
+        md.use(implicitFigures,{figcaption:true})
+        md.use(MdContainer,...MdContainerClass)
 
         md.use(postRender)
 
@@ -113,7 +120,7 @@ export default defineConfig({
 
         md.use(TexMath, {
           engine: Katex,
-          delimiters: 'dollars',
+          delimiters: ['dollars','beg_end','julia'],
           katexOptions: { macros: { '\\RR': '\\mathbb{R}' } },
         })
 
@@ -132,8 +139,8 @@ export default defineConfig({
       registerType: 'autoUpdate',
       includeAssets: ['favicon.svg', 'safari-pinned-tab.svg'],
       manifest: {
-        name: 'Vitesse',
-        short_name: 'Vitesse',
+        name: 'Rbook',
+        short_name: 'Rbook',
         theme_color: '#ffffff',
         icons: [
           {

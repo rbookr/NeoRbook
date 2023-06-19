@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../js/d3.js"></script>
+    <style>
+        html, body {
+            padding: 0;
+            margin: 0;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .logbox {
+            display: flex;
+            justify-content: center;
+            position: fixed;
+            bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="logbox">
+        <p id="log"></p>
+    </div>
+<script>
+//一个表示quicksort 一趟排序的动画
+
+//原始的数据
+const __data = [17, 13, 4, 8, 9, 20, 15, 2, 11, 5];
+const __width = window.innerWidth
+const rect_w = Math.min(80,(__width * 0.9)/__data.length)
+console.log(__width)
+
+const config = {
+    rect :{
+        w:rect_w,
+        h:0.625 *rect_w,
+    },
+    duration:2500,
+    delay:800
+}
+console.log(config)
+//动画的 一帧
+// 帧的类型:
+// type: val_move
+// type: idx_move
+const frame = []
+
+
+//创建一个svg
+const svg  = d3.select('body')
+    .append('svg')
+    .attr("width","100%")
+    .attr("height","100%")
+//得到log
+const _log = d3.select("#log")
+function log(str)
+{
+    _log.text(str)
+}
+
+
+//得到高度
+const svgHeight = svg.node().getBoundingClientRect().height
+const svgWeight = svg.node().getBoundingClientRect().width
+
+//计算起点
+const start_x = (svgWeight - __data.length * config.rect.w) / 2
+const start_y = (svgHeight - config.rect.h) / 2
+
+// 设定-1这个点的坐标
+const pos_key = {
+    x: (svgWeight - config.rect.w) / 2,
+    y: (start_y - 4*config.rect.h) 
+}
+
+//绘制一行rect,背景
+svg.selectAll('rect')
+    .data(__data)
+    .join('rect')
+    // .attr("x",100)
+    .attr("x",(d,i) => start_x + i * config.rect.w)
+    .attr("y",start_y)
+    .attr("width",config.rect.w)
+    .attr("height",config.rect.h)
+    .attr('fill','none')
+    .attr('stroke','black')
+
+//绘制key的rect
+svg.append('rect')
+    .attr("id","key")
+    .attr("x",pos_key.x)
+    .attr("y",pos_key.y)
+    .attr("width",config.rect.w)
+    .attr("height",config.rect.h)
+    .attr('fill','none')
+    .attr('stroke','black')
+
+
+//得到每个位置的点的坐标,也就是文字
+function get_point_at_idx(idx){
+    let pos;
+    if( idx == -1)
+        pos = {
+            x: pos_key.x,
+            y: pos_key.y
+        }
+    else
+        pos = {
+        x: start_x + idx * config.rect.w,
+        y: start_y
+    }
+    return {x:pos.x + config.rect.w/2,y:pos.y + config.rect.h/2}
+}
+
+// 绘制文字
+svg.selectAll("text")
+    .data(__data)
+    .join("text")
+    .attr("x",(d,i) => get_point_at_idx(i).x)
+    .attr("y",(d,i) => get_point_at_idx(i).y)
+    .attr("text-anchor","middle")
+    .attr("dominant-baseline","middle")
+    .attr("fill","black")
+    .text(d => d)
+    .attr("id",d => 't' + d)
+
+//绘制key的文字
+svg.append('text')
+    .attr("id","key_text")
+    .attr("x",pos_key.x - config.rect.w/2)
+    .attr("y",pos_key.y + config.rect.h/2)
+    .attr('stroke','black')
+    .attr("text-anchor","middle")
+    .attr("dominant-baseline","middle")
+    .attr("fill","black")
+    .text( "key")
+
+//得到箭头的位置,根据数组的下标
+function get_arrow_pos(idx) {
+    let pos = get_point_at_idx(idx)
+    return  {x:pos.x-10,y:pos.y + config.rect.h}
+}
+
+
+const sort_data = [...__data]
+const l_idx = 0, r_idx = sort_data.length - 1
+
+//绘制箭头
+const arrows = ['left','right']
+svg.selectAll("path")
+    .data(arrows)
+    .join('path')
+    .attr("d","M12 3L7 8M12 3L17 8M12 3V21")
+    .attr("id" ,d => d)
+    .attr("stroke","black")
+    .attr("stroke-width",2)
+    .attr("stroke-linecap","round")
+    .attr("stroke-linejoin","round")
+    .attr("transform",d => {
+        let pos = get_arrow_pos(d == 'left' ? l_idx : r_idx)
+        return `translate(${pos.x},${pos.y})`
+    })
+
+const init_pos = {}
+
+//记录每个元素的初始位置
+d3.selectAll("*").each( function(){
+    let id = d3.select(this).attr("id")
+    let dom = d3.select(this)
+    if( id && id[0] == 't') {
+        init_pos[id] = {x:dom.attr("x"),y:dom.attr("y")}
+    }
+    else if ( id ) {
+        let transform = dom.attr("transform")
+        if(transform)
+            init_pos[id] = { transform}
+    }
+})
+//quick sort
+    function quick_sort(arr, l, r) {
+        console.log(arr, l, r)
+        if (l >= r) return;
+
+        let s = l
+        let t = r
+        let key = arr[l]
+
+        // 表示 把某个值移动到key的位置
+        frame.push({
+            type: 'val_move', val: key, to: -1,
+            log: `取出第一个元素${key},作为比较用的key`
+        })
+
+        while (l != r) {
+
+            while (l != r && key < arr[r]) {
+                r--
+                frame.push({
+                    type: 'idx_move', val: '#right', to: r,
+                    log: `第${r + 1}位上的数 ${arr[r + 1]} 比key:${key}大,不用动,right指针左移一位`
+                })
+            }
+            if (l != r) {
+                frame.push({
+                    type: 'val_move', val: arr[r], to: l,
+                    from: r,
+                    log: `第${r}位上的数${arr[r]}比key:${key}小,把它移动到左边的空位`
+                })
+
+                arr[l] = arr[r];
+                l++;
+                frame.push({
+                    type: 'idx_move', val: '#left', to: l,
+                    log: `left指针所指向的位置被占用,右移一位`
+                })
+            }
+
+            while (l != r && key > arr[l]) {
+                l++;
+                frame.push({
+                    type: 'idx_move', val: '#left', to: l,
+                    log: `第${l - 1}位上的数${arr[l - 1]}比key:${key}小,不用动,left指针右移一位`
+                })
+            }
+
+            if (l != r) {
+                frame.push({
+                    type: 'val_move', val: arr[l], to: r,
+                    from: l,
+                    log: `第${l}位上的数${arr[l]}比key:${key}大,把它移动到右边的空位`
+                })
+
+                arr[r] = arr[l]
+                r--
+
+                frame.push({
+                    type: 'idx_move', val: '#right', to: r,
+                    log: `right指针所指向的位置被占用,左移一位`
+                })
+            }
+        }
+        arr[l] = key
+        frame.push({
+            type: "val_move", val: key, to: l,
+            log: "两个指针的位置相同,把key移动到这个位置"
+        })
+        // quick_sort(arr,s,l);
+        // quick_sort(arr,l+1,t);
+    }
+
+quick_sort(sort_data,0,sort_data.length-1)
+//播放frame
+
+const move_path = svg.append("path")
+    .attr("stroke","none")
+    .attr("fill","none")
+    .attr("id","move_path")
+
+//创建两个点之间的移动路径,曲线
+function create_move_path(idx1,idx2) {
+    let pos1 = get_point_at_idx(idx1)
+    let pos2 = get_point_at_idx(idx2)
+
+    console.log(pos1,pos2)
+    let pathGenerator = d3.path()
+
+    pathGenerator.moveTo(pos1.x,pos1.y)
+    let control_y =(pos1.y+pos2.y)/2 - (config.rect.h*2) * (idx2 > idx1 ? -1 : 1)
+    pathGenerator.quadraticCurveTo((pos1.x+pos2.x)/2,control_y,pos2.x,pos2.y)
+
+    move_path.attr("d",pathGenerator.toString())
+
+}
+
+var play_idx = 0
+// console.log(init_pos)
+
+// create_move_path(1, 2);
+function play_frame() {
+    interval = setInterval(() => {
+        if(  play_idx == frame.length ) {
+            play_idx = 0
+            // clearInterval(interval)
+
+            //初始化位置
+            for( let key in init_pos) {
+                if( init_pos[key].x ) {
+                    svg.select('#'+key)
+                        .attr("x",init_pos[key].x)
+                        .attr("y",init_pos[key].y);
+                }
+                else {
+                    svg.select('#'+key)
+                        .attr("transform",init_pos[key].transform);
+                }
+            }
+            return
+        }
+        let f = frame[play_idx++]
+        console.log(f,f.from)
+        if( f.type == 'val_move') {
+            let pos = get_point_at_idx(f.to)
+            const mv = d3.select('#t'+f.val)
+                .transition()
+                .duration(config.duration)
+
+            if( f.from ) {
+                create_move_path(f.from,f.to)
+                mv.tween('pathTween',()=> {
+                    return function(t) {
+                        let p = move_path.node().getPointAtLength(t*move_path.node().getTotalLength())
+                        d3.select(this)
+                            .attr("x",p.x)
+                            .attr("y",p.y)
+                    }
+                })
+            }
+            else {
+                mv.attr("x",pos.x)
+                .attr("y",pos.y)
+            }
+
+        }
+        else if( f.type == 'idx_move') {
+            let pos = get_arrow_pos(f.to)
+            d3.select(f.val)
+                .transition()
+                .duration(config.duration)
+                .attr("transform", () => {
+                    return `translate(${pos.x},${pos.y})`
+                })
+                // `translate(${pos.x},${pos.y + config.rect.h / 2})`)
+        }
+        log(f.log || '')
+    }, config.duration + config.delay);
+}
+
+play_frame()
+
+</script>    
+</body>
+</html>

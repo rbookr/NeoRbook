@@ -146,7 +146,7 @@ export class BaseClass {
       .ease(BaseClass.get_ease(dumps.ease))
       .duration(dumps.duration)
 
-    // 设定attr
+    // 设定attr,TODO 应该使用 _.each
     _.reduce(dumps.attrs, (rect, [name, attr]) => {
       dom.attr(name, attr)
       return dom

@@ -40,7 +40,7 @@ code[v-pre] {
             margin-right: 10px;
         }
     }
-    
+
     //最后一行空行不显示
     span.line:last-child:has(span:first-child:empty){
         display: none;
@@ -60,16 +60,16 @@ code[v-pre] {
     }
 }
 
-//Katex 行内公式增加左右空格 
+//Katex 行内公式增加左右空格
 p  {
     &>eq {
         margin: 0 0.2em;
     }
     // &>eq:first-child {
-    //     margin-left: 0;    
+    //     margin-left: 0;
     // }
     // &>eq:last-child{
-    //     margin-right: 0;    
+    //     margin-right: 0;
     // }
 }
 
@@ -85,8 +85,8 @@ section:has( > eqn) {
     padding: 1rem 0;
 }
 
-html.dark .markdown-body > h1:first-child { 
-    //TODO 这个颜色不对,应该有透  
+html.dark .markdown-body > h1:first-child {
+    //TODO 这个颜色不对,应该有透
     border-color: rgba($color: #dbd7ca, $alpha: 0.15);
 }
 
@@ -109,6 +109,44 @@ html.dark .markdown-body > h1:first-child {
     padding: 0;
 }
 
+//fenc,代码区域,添加上下padding
+.markdown-body pre.shiki {
+  code[v-pre] {
+    padding: 1em 0;
+  }
+}
+
 .markdown-body iframe {
     width:  100%;
+}
+
+// figure
+.markdown-body {
+  figure {
+    // display: flex;
+    flex-direction: column;
+    justify-content: center;
+    img {
+      // flex-grow: 0;
+      margin: 0 auto;
+      border: 1px solid rgba($color: #dbd7ca, $alpha: 0.45);
+      border-radius: 0.4em;
+      padding: 1rem;
+    }
+    figcaption {
+      font-family: var(--code-font), var(--ui-font), monospace;
+      text-align: center;
+    }
+  }
+}
+html.dark {
+  .markdown-body {
+    figure {
+      img {
+        border: 1px solid rgba($color: #333, $alpha: 0.75);
+        background-color: #ccc;
+      }
+    }
+  }
+
 }

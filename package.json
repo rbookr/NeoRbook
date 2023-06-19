@@ -5,6 +5,7 @@
   "scripts": {
     "build": "vite-ssg build",
     "dev": "vite --port 3333 --host",
+    "dev_animation": "vite --port 3334 --host --config ./animation/vite.config.ts",
     "lint": "eslint .",
     "preview": "vite preview",
     "preview-https": "serve dist",
@@ -51,6 +52,8 @@
     "https-localhost": "^4.7.1",
     "katex": "^0.16.6",
     "lint-staged": "^13.2.1",
+    "markdown-it-container": "^3.0.0",
+    "markdown-it-image-figures": "^2.1.1",
     "markdown-it-link-attributes": "^4.0.1",
     "markdown-it-shiki": "^0.8.1",
     "markdown-it-texmath": "^1.0.0",

@@ -28,7 +28,7 @@ html:not(.dark) .vitesse-dark {
   display: none;
 }
 
-code[v-pre] { 
+code[v-pre] {
   display: flex;
   flex-direction: column;
 }

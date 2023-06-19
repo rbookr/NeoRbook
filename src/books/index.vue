@@ -1,11 +1,6 @@
-<script>
+<script setup>
 // import HelloWorld from './index.md'
 
-export default {
-  // components: {
-  //   HelloWorld,
-  // },
-}
 </script>
 
 <template>
