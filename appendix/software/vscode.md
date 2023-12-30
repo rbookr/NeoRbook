@@ -11,6 +11,17 @@
 
 不需要配置
 
+### 1.1 常用的插件
+
+- c/c++ 一定要安装
+- chinese language 中文界面
+
+### 1.2 常用的配置
+
+- 自动格式化 `设置 -> default Formatter :c/c++, Format on Paste ,Format on Save , Format on Type`
+- 彩色括号 `设置-> bracket pair colorization`
+
+
 ## 2. 写代码
 
 第一次打开`vscode`,会自动下载一个`c/c++ language components`的东西
@@ -64,6 +75,9 @@ g++ -g -o 1 1.cpp
 
 ## 5. vscode 常用快捷键
 
+[官方文档:快捷键](https://code.visualstudio.com/docs/getstarted/keybindings)
+
+
 注释
 
 - 单行注释 [[ctrl]]+[[/]],如果再按一次,取消注释
@@ -71,7 +85,7 @@ g++ -g -o 1 1.cpp
 
 行操作
 
-- 向下/上移动当前行：[[alt]] + [[⬇️]] / [[⬆️]]
+- 向下/上移动当前行：[[alt]] + [[⬇] / [[⬆]
 - 选中当前行： [[ctrl]]+[[l]]
 - 删除当前行：[[shift ]]+ [[ctrl ]]+ [[k]]
 - 行增加缩进： [[ctrl ]]+ [[\[]]
@@ -81,6 +95,13 @@ g++ -g -o 1 1.cpp
 - 向下新起一行： [[ctrl]] + [[enter]]
 - 向上新起一行： [[ctrl]] + [[shift]] + [[enter]]
 
+常用
+
+- 撤销 : [[ctrl]] + [[z]]
+- 反撤销 : [[ctrl]] + [[shift]] + [[z]]
+- 向下/下卷屏: [[ctrl]]  + [[⬆]] / [[⬇]]
+- 向左/右跨越单词: [[ctrl]]  + [[⬅]] / [[➡]]
+- 向下/上同时编辑多行(多行光标) : [[ctrl]] + [[shift]] + [[⬆]] / [[⬇]]
 
 其它
 
